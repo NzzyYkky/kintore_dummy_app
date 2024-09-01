@@ -1,5 +1,6 @@
 import { useReducer, useEffect } from 'react';
 import { TimerState, TimerAction } from '../types';
+import useSound from 'use-sound';
 
 const initialState: TimerState = {
 	setSeconds: 4,
@@ -82,15 +83,42 @@ function reducer(state: TimerState, action: TimerAction): TimerState {
 export function useIntervalTimer() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
+	const [playTick] = useSound('/tick.wav');
+	const [playSetStart] = useSound('/set.wav');
+	const [playRestStart] = useSound('/set.wav');
+
 	useEffect(() => {
 		let interval: NodeJS.Timeout;
 		if (state.isRunning) {
 			interval = setInterval(() => {
 				dispatch({ type: 'TICK' });
+				playTick();
+
+				// NOTE:セットが終わる時
+				if (state.currentTime === 1 && !state.isResting) {
+					if (state.currentSet < state.maxSets) {
+						playRestStart();
+					}
+				}
+				// NOTE:休憩が終わる時
+				else if (state.currentTime === 1 && state.isResting) {
+					if (state.currentSet < state.maxSets) {
+						playSetStart();
+					}
+				}
 			}, 1000);
 		}
 		return () => clearInterval(interval);
-	}, [state.isRunning]);
+	}, [
+		state.isRunning,
+		state.currentTime,
+		state.isResting,
+		state.currentSet,
+		state.maxSets,
+		playTick,
+		playSetStart,
+		playRestStart,
+	]);
 
 	return { state, dispatch };
 }
