@@ -16,7 +16,7 @@ export const TimerControls: React.FC<TimerControlsProps> = ({
 
 	return (
 		<div className="mt-8 flex flex-col items-center justify-center">
-			<div className="grid grid-cols-3 gap-4">
+			<div className="grid gap-4 grid-cols-1 md:grid-cols-3">
 				<TimerInput
 					label="セットの秒数"
 					value={state.setSeconds}
