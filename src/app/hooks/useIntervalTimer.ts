@@ -85,9 +85,9 @@ function reducer(state: TimerState, action: TimerAction): TimerState {
 export function useIntervalTimer() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const [playTick] = useSound(`${BASE_PATH}/tick.wav`);
-	const [playSetStart] = useSound(`${BASE_PATH}/set.wav`);
-	const [playRestStart] = useSound(`${BASE_PATH}/set.wav`);
+	const [playTick] = useSound(`${BASE_PATH}/tick.mp3`);
+	const [playSetStart] = useSound(`${BASE_PATH}/set.mp3`);
+	const [playRestStart] = useSound(`${BASE_PATH}/set.mp3`);
 
 	useEffect(() => {
 		let interval: NodeJS.Timeout;
