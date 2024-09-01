@@ -9,7 +9,7 @@ export const IntervalTimer: React.FC = () => {
 	const { state, dispatch } = useIntervalTimer();
 
 	return (
-		<div className="flex flex-col justify-center items-center w-full h-[100vh]">
+		<div className="flex flex-col justify-center items-center w-full pt-8 md:h-[100vh] md:pd-0">
 			<h1 className="text-center text-responsive-large font-bold">
 				筋トレ用アプリ
 			</h1>
