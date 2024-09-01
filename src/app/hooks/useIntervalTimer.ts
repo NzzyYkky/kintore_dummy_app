@@ -1,6 +1,8 @@
 import { useReducer, useEffect } from 'react';
 import { TimerState, TimerAction } from '../types';
 import useSound from 'use-sound';
+import nextConfig from '../../../next.config.mjs';
+const BASE_PATH = nextConfig.basePath || '';
 
 const initialState: TimerState = {
 	setSeconds: 4,
@@ -83,9 +85,9 @@ function reducer(state: TimerState, action: TimerAction): TimerState {
 export function useIntervalTimer() {
 	const [state, dispatch] = useReducer(reducer, initialState);
 
-	const [playTick] = useSound('/tick.wav');
-	const [playSetStart] = useSound('/set.wav');
-	const [playRestStart] = useSound('/set.wav');
+	const [playTick] = useSound(`${BASE_PATH}/tick.wav`);
+	const [playSetStart] = useSound(`${BASE_PATH}/set.wav`);
+	const [playRestStart] = useSound(`${BASE_PATH}/set.wav`);
 
 	useEffect(() => {
 		let interval: NodeJS.Timeout;
