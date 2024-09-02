@@ -18,7 +18,7 @@ export const TimerControls: React.FC<TimerControlsProps> = ({
 		<div className="mt-8 flex flex-col items-center justify-center">
 			<div className="grid gap-4 grid-cols-1 md:grid-cols-3">
 				<TimerInput
-					label="Set Seconds"
+					label="セットの秒数"
 					value={state.setSeconds}
 					onValueChange={(value) => {
 						if (!state.isRunning) {
@@ -27,7 +27,7 @@ export const TimerControls: React.FC<TimerControlsProps> = ({
 					}}
 				/>
 				<TimerInput
-					label="Rest Seconds"
+					label="休憩の秒数"
 					value={state.restSeconds}
 					onValueChange={(value) => {
 						if (!state.isRunning) {
@@ -36,7 +36,7 @@ export const TimerControls: React.FC<TimerControlsProps> = ({
 					}}
 				/>
 				<TimerInput
-					label="Max Sets"
+					label="最大のセット数"
 					value={state.maxSets}
 					onValueChange={(value) => {
 						if (!state.isRunning) {
