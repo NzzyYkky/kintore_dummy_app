@@ -18,25 +18,31 @@ export const TimerControls: React.FC<TimerControlsProps> = ({
 		<div className="mt-8 flex flex-col items-center justify-center">
 			<div className="grid gap-4 grid-cols-1 md:grid-cols-3">
 				<TimerInput
-					label="セットの秒数"
+					label="Set Seconds"
 					value={state.setSeconds}
-					onValueChange={(value) =>
-						dispatch({ type: 'SET_SET_SECONDS', payload: value })
-					}
+					onValueChange={(value) => {
+						if (!state.isRunning) {
+							dispatch({ type: 'SET_SET_SECONDS', payload: value });
+						}
+					}}
 				/>
 				<TimerInput
-					label="休憩の秒数"
+					label="Rest Seconds"
 					value={state.restSeconds}
-					onValueChange={(value) =>
-						dispatch({ type: 'SET_REST_SECONDS', payload: value })
-					}
+					onValueChange={(value) => {
+						if (!state.isRunning) {
+							dispatch({ type: 'SET_REST_SECONDS', payload: value });
+						}
+					}}
 				/>
 				<TimerInput
-					label="最大のセット数"
+					label="Max Sets"
 					value={state.maxSets}
-					onValueChange={(value) =>
-						dispatch({ type: 'SET_MAX_SETS', payload: value })
-					}
+					onValueChange={(value) => {
+						if (!state.isRunning) {
+							dispatch({ type: 'SET_MAX_SETS', payload: value });
+						}
+					}}
 				/>
 			</div>
 			<div className="flex justify-center gap-4 mt-8">
